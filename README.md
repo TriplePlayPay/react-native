@@ -8,7 +8,11 @@
 
 To get started with the TPP React Native SDK on iOS, follow these steps:
 
-1. Ensure your minimum iOS deployment target is set to 15.0 or later.
+1. Ensure your minimum iOS deployment target is set to 15.0 or later. If you have a Podfile, ensure it is set to 15.0 or later like this:
+
+   ```ruby
+   platform :ios, '15.0'
+   ```
 
 2. Install the TPP React Native SDK and link the pods:
 
