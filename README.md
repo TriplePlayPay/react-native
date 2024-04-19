@@ -24,7 +24,7 @@ To get started with the TPP React Native SDK on iOS, follow these steps:
 3. Add the Bluetooth permission to your app's `Info.plist` file:
    - The app's `Info.plist` must contain an `NSBluetoothAlwaysUsageDescription` key with a string value explaining to the user how the app uses this data.
 
-4. Add the `MagTekSDK` from `Pods > TPP-MagTekSDK > Frameworks` into your target project's General > Frameworks, Embedded Binaries, and Linked Frameworks sections. Set to `Embed & Sign`.
+4. Add the `MagTekSDK` from `Pods > TPP-MagTekSDK > Frameworks` into your target project's General > Frameworks, Libraries, and Embedded Content section. Set it to `Embed & Sign`.
   
 5. Import the `@tripleplaypay/react-native` module in your project:
 
