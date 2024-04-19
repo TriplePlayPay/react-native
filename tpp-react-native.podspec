@@ -22,5 +22,5 @@ Pod::Spec.new do |s|
   end
 
   s.dependency 'React-Core'
-  s.dependency "TPP-MagTekSDK", "0.0.7"
+  s.dependency "TPP-MagTekSDK", "0.0.9"
 end
