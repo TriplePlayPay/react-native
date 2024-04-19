@@ -1054,13 +1054,13 @@ PODS:
     - React-logger (= 0.73.7)
     - React-perflogger (= 0.73.7)
   - SocketRocket (0.6.1)
-  - TPP-MagTekSDK (0.0.5)
-  - tpp-react-native (0.37.2):
+  - TPP-MagTekSDK (0.0.7)
+  - tpp-react-native (0.0.5):
     - React-Core
-    - TPP-MagTekSDK (= 0.0.5)
-  - tpp-react-native/Tests (0.37.2):
+    - TPP-MagTekSDK (= 0.0.7)
+  - tpp-react-native/Tests (0.0.5):
     - React-Core
-    - TPP-MagTekSDK (= 0.0.5)
+    - TPP-MagTekSDK (= 0.0.7)
   - Yoga (1.14.0)
 
 DEPENDENCIES:
@@ -1277,8 +1277,8 @@ SPEC CHECKSUMS:
   React-utils: d07d009101c7dabff68b710da5c4a47b7a850d98
   ReactCommon: 8cae78d3c3eceff20ee4bbca8bb73b675a45fd5d
   SocketRocket: f32cd54efbe0f095c4d7594881e52619cfe80b17
-  TPP-MagTekSDK: dbcf093d6ab59384a68926e6afd652e12e162371
-  tpp-react-native: a7e56c04530ccefc83c8bb5e6f75c4008c34f213
+  TPP-MagTekSDK: 59cc97553df5c7c9e12d59c0f68f3cb6339e9e7f
+  tpp-react-native: dbcc058131c8e82154bb8cd78ca24ed62cbbdf28
   Yoga: c716aea2ee01df6258550c7505fa61b248145ced
 
 PODFILE CHECKSUM: bb3125e903b0554bf7cfae76f5e4544d42bd2b54
