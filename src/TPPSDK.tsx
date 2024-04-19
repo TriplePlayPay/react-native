@@ -53,10 +53,8 @@ export const TPPSDKModule = {
     timeout: number,
     callback: (connected: boolean) => void
   ): void {
-    TPPSDK.connect(deviceName, timeout, (result: boolean[]) => {
-      if (result.length > 0) {
-        callback(result[0]);
-      }
+    TPPSDK.connect(deviceName, timeout, (result: boolean) => {
+      callback(result);
     });
   },
 
@@ -73,10 +71,8 @@ export const TPPSDKModule = {
     amount: string,
     callback: (result: TransactionResult) => void
   ): void {
-    TPPSDK.startTransaction(amount, (result: TransactionResult[]) => {
-      if (result.length > 0) {
-        callback(result[0]);
-      }
+    TPPSDK.startTransaction(amount, (result: TransactionResult) => {
+      callback(result);
     });
   },
 
