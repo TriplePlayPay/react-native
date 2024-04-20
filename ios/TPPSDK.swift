@@ -1,7 +1,7 @@
 // MagTekModule.swift
 
 import Foundation
-import MagTekSDK
+
 
 @objc(TPPSDK)
 class TPPSDK:  RCTEventEmitter {
