@@ -47,7 +47,7 @@ class TPPSDK:  RCTEventEmitter {
             return
         }
             callback([["message": message, "event": MagTekCardReader.getEventMessage(event), "status": MagTekCardReader.getStatusMessage(status)]])
-    }
+        }
     }
     
     @objc func getSerialNumber(_ callback: RCTResponseSenderBlock) {
