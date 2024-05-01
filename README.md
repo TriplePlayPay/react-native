@@ -8,7 +8,7 @@
 
 To get started with the TPP React Native SDK on iOS, follow these steps:
 
-1. Ensure your minimum iOS deployment target is set to 15.0 or later. If you have a Podfile, ensure it is set to 15.0 or later like this:
+1. Ensure your minimum iOS deployment target is set to 13.0 or later. If you have a Podfile, ensure it is set to 13.0 or later like this:
 
    ```ruby
    platform :ios, '13.0'
@@ -16,22 +16,18 @@ To get started with the TPP React Native SDK on iOS, follow these steps:
 
 2. Install the TPP React Native SDK and link the pods:
 
-   ```bash
-   npm install @tripleplaypay/react-native
-   npx pod-install
-   ```
-   **Note:** The `npx pod-install` command may fail if you did not have a Podfile before. If it fails, follow these steps:
+   **Note:** follow these steps to ensure the `pod-install` command works the first time:
    a. Open your `ios/Podfile` in a text editor. If it doesn't exist, create it in the `ios` directory of your project.
 
-   b. Ensure the iOS version is set to 15.0 or later in your Podfile, like this:
+   b. Ensure the iOS version is set to 13.0 or later in your Podfile, like this:
 
       ```ruby
       platform :ios, '13.0'
       ```
-
-   c. Run `npx pod-install` again. It should succeed this time.
-
-
+   ```bash
+   npm install @tripleplaypay/react-native
+   npx pod-install
+   ```
 3. Add the Bluetooth permission to your app's `Info.plist` file:
    - The app's `Info.plist` must contain an `NSBluetoothAlwaysUsageDescription` key with a string value explaining to the user how the app uses this data.
 
