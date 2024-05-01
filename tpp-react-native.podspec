@@ -11,7 +11,7 @@ Pod::Spec.new do |s|
   s.license      = package['license']
   s.authors      = package['author']
 
-  s.platforms    = { ios: '13.0' }
+  s.platforms    = { ios: '12.4' }
   s.source       = { git: 'https://github.com/tripleplaypay/react-native.git', tag: s.version.to_s }
 
   s.source_files = 'ios/**/*.{h,m,mm,swift}'
@@ -22,5 +22,5 @@ Pod::Spec.new do |s|
   end
 
   s.dependency 'React-Core'
-  s.dependency "TPP-MagTekSDK", "0.0.24"
+  s.dependency "TPP-MagTekSDK", "0.0.25"
 end
