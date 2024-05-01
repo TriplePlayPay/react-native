@@ -1,6 +1,6 @@
 {
   "name": "@tripleplaypay/react-native",
-  "version": "0.0.19",
+  "version": "0.0.20",
   "author": "Stripe",
   "description": "Stripe SDK for React Native",
   "main": "lib/commonjs/index",
