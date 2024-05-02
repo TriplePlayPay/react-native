@@ -19,7 +19,9 @@ class TPPSDKModule(reactContext: ReactApplicationContext) : ReactContextBaseJava
 
     @ReactMethod
     fun initialize(apiKey: String) {
-        reader = MagTekCardReader(reactApplicationContext, apiKey/*, debug = true*/)
+        val activityContext = reactApplicationContext.currentActivity ?: reactApplicationContext
+        reader = MagTekCardReader(activityContext, apiKey)
+        // reader = MagTekCardReader(reactApplicationContext.getApplicationContext(), apiKey/*, debug = true*/)
     }
 
     @ReactMethod
