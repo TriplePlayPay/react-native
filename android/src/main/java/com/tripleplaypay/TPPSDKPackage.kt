@@ -8,7 +8,7 @@ import com.facebook.react.uimanager.ViewManager
 import java.util.function.Supplier
 
 
-class TPPSDKPackage(private val activityGetter: Supplier<Activity>) : ReactPackage {
+class TPPSDKPackage(private val activityGetter: Supplier<Activity?>) : ReactPackage {
 
   override fun createNativeModules(reactContext: ReactApplicationContext): MutableList<NativeModule> {
     return mutableListOf(TPPSDKModule(reactContext, activityGetter))

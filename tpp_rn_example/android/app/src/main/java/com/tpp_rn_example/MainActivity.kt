@@ -18,7 +18,7 @@ class MainActivity : ReactActivity() {
   ) {
     super.onCreate(savedInstanceState, persistentState)
     Log.d(TAG, "onCreate: saving the activity")
-    MainApplication.activity = this;
+    MainApplication.activity[0] = this;
   }
 
   /**

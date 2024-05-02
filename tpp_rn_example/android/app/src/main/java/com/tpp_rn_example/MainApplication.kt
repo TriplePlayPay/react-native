@@ -21,7 +21,7 @@ class MainApplication : Application(), ReactApplication {
           // add(MyReactNativePackage())
           add(TPPSDKPackage {
             Log.d(TAG, "getPackages: fetching activity from lambda")
-            activity
+            activity[0]
           })
         }
 
@@ -46,6 +46,6 @@ class MainApplication : Application(), ReactApplication {
   }
 
   companion object {
-    lateinit var activity: MainActivity
+    val activity: Array<MainActivity?> = arrayOf(null)
   }
 }

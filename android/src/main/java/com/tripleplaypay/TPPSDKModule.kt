@@ -2,6 +2,7 @@
 
 package com.tripleplaypay
 
+import android.annotation.SuppressLint
 import android.app.Activity
 import android.os.Handler
 import android.os.Looper
@@ -16,12 +17,13 @@ private const val TAG = "TPPSDKModule"
 @ReactModule(name = TPPSDKModule.NAME)
 class TPPSDKModule(
   reactContext: ReactApplicationContext,
-  private val activityGetter: Supplier<Activity>
+  private val activityGetter: Supplier<Activity?>
 ) :
   ReactContextBaseJavaModule(reactContext) {
   companion object {
+    @SuppressLint("StaticFieldLeak")
     private var reader: MagTekCardReader? = null
-    public const val NAME: String = "TPPSDK";
+    const val NAME: String = "TPPSDK";
   }
 
   override fun getName(): String {
@@ -34,14 +36,7 @@ class TPPSDKModule(
     val ii = arrayOf(0)
     val function: Array<Runnable?> = arrayOf(null);
     function[0] = Runnable {
-      Log.d(TAG, "initialize: polling, round ${ii[0]}");
-      var activity = reactApplicationContext.currentActivity
-
-      Log.d(TAG, "initialize: polling, round ${ii[0]} - RAC null: ${activity == null}");
-      if (activity == null) {
-        activity = this.activityGetter.get()
-        Log.d(TAG, "initialize: polling, round ${ii[0]} - getter null: ${activity == null}");
-      }
+      val activity = readActivityFromReactNativeOrOurStaticVar(ii)
 
       if (activity != null) {
         reader = MagTekCardReader(activity, apiKey)
@@ -64,6 +59,18 @@ class TPPSDKModule(
     reader = MagTekCardReader(activityContext, apiKey)
     */
     // reader = MagTekCardReader(reactApplicationContext.getApplicationContext(), apiKey/*, debug = true*/)
+  }
+
+  private fun readActivityFromReactNativeOrOurStaticVar(ii: Array<Int>): Activity? {
+    Log.d(TAG, "initialize: polling, round ${ii[0]}");
+    var activity = reactApplicationContext.currentActivity
+
+    Log.d(TAG, "initialize: polling, round ${ii[0]} - RAC null: ${activity == null}")
+    if (activity == null) {
+      activity = this.activityGetter.get()
+      Log.d(TAG, "initialize: polling, round ${ii[0]} - getter null: ${activity == null}")
+    }
+    return activity
   }
 
   @ReactMethod
