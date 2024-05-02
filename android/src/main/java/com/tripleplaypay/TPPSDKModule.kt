@@ -3,11 +3,12 @@
 package com.tripleplaypay
 
 import android.app.Activity
+import android.os.Handler
+import android.os.Looper
 import android.util.Log
 import com.facebook.react.bridge.*
 import com.facebook.react.module.annotations.ReactModule
 import com.tripleplaypay.magteksdk.MagTekCardReader
-import java.lang.RuntimeException
 import java.util.function.Supplier
 
 private const val TAG = "TPPSDKModule"
@@ -30,31 +31,30 @@ class TPPSDKModule(
   @ReactMethod
   fun initialize(apiKey: String) {
     Log.d(TAG, "initialize: entered");
-    Thread {
-      Log.d(TAG, "initialize: polling for activity");
-      var activity: Activity? = null;
-      for (i in 0..5) {
-        Log.d(TAG, "initialize: polling for activity, round ${i}");
-        var a = reactApplicationContext.currentActivity
-        Log.d(TAG, "initialize: polling for activity, round ${i} - RAC null: ${a == null}");
-        if (a == null) {
-          a = this.activityGetter.get()
-          Log.d(TAG, "initialize: polling for activity, round ${i} - getter null: ${a == null}");
-        }
+    val ii = arrayOf(0)
+    var function: Runnable? = null;
+    function = Runnable {
+      Log.d(TAG, "initialize: polling, round ${ii[0]}");
+      var activity = reactApplicationContext.currentActivity
 
-        if (a != null) {
-          activity = a;
-          break
-        }
-
-        Log.d(TAG, "initialize: polling for activity, round ${i} - gave up, sleeping");
-        Thread.sleep(1000L);
+      Log.d(TAG, "initialize: polling, round ${ii[0]} - RAC null: ${activity == null}");
+      if (activity == null) {
+        activity = this.activityGetter.get()
+        Log.d(TAG, "initialize: polling, round ${ii[0]} - getter null: ${activity == null}");
       }
 
-      if (activity == null)
+      if (activity != null) {
+        reader = MagTekCardReader(activity, apiKey)
+        return@Runnable
+      }
+
+      if (ii[0] == 10)
         throw RuntimeException("no current activity - should not happen")
-      reader = MagTekCardReader(activity, apiKey)
-    }.start()
+      ii[0]++;
+      Handler(Looper.getMainLooper()).postDelayed({ function?.run() }, 250L)
+    }
+
+    Handler(Looper.getMainLooper()).postDelayed({ function.run() }, 250L)
 
     /*
     val activityContext =
