@@ -89,6 +89,9 @@ android {
         targetSdkVersion rootProject.ext.targetSdkVersion
         versionCode 1
         versionName "1.0"
+        buildConfigField "Boolean", "IS_INTERNAL_BUILD", 'true'
+        buildConfigField "Boolean", "IS_HERMES_ENABLED", 'true'
+        buildConfigField "Boolean", "IS_NEW_ARCHITECTURE_ENABLED", 'true'
     }
     signingConfigs {
         debug {
@@ -115,7 +118,7 @@ android {
 dependencies {
     // The version of react-native is set by the React Native Gradle Plugin
     implementation("com.facebook.react:react-android")
-//    implementation("com.facebook.react:flipper-integration")
+    implementation project(':tripleplaypay')
 
     if (hermesEnabled.toBoolean()) {
         implementation("com.facebook.react:hermes-android")

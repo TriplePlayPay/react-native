@@ -6,26 +6,25 @@ import com.facebook.react.defaults.DefaultNewArchitectureEntryPoint.load
 import com.facebook.react.defaults.DefaultReactHost.getDefaultReactHost
 import com.facebook.react.defaults.DefaultReactNativeHost
 import com.facebook.soloader.SoLoader
-import com.tripleplaypay.reactnative.BuildConfig
+import com.tripleplaypay.TPPSDKPackage
 
 class MainApplication : Application(), ReactApplication {
 
   override val reactNativeHost: ReactNativeHost =
     object : DefaultReactNativeHost(this) {
       override fun getPackages(): List<ReactPackage> =
-        listOf()
-        // PackageList(this).packages.apply {
-        //   // Packages that cannot be autolinked yet can be added manually here, for example:
-        //   add(MyReactNativePackage())
-        //   add(TPPSDKPackage())
-        // }
+        PackageList(this).packages.apply {
+          // Packages that cannot be autolinked yet can be added manually here, for example:
+          // add(MyReactNativePackage())
+          add(TPPSDKPackage())
+        }
 
       override fun getJSMainModuleName(): String = "index"
 
       override fun getUseDeveloperSupport(): Boolean = BuildConfig.DEBUG
 
-      override val isNewArchEnabled: Boolean = true; // BuildConfig.IS_NEW_ARCHITECTURE_ENABLED
-      override val isHermesEnabled: Boolean = true; // BuildConfig.IS_HERMES_ENABLED
+      override val isNewArchEnabled: Boolean = BuildConfig.IS_NEW_ARCHITECTURE_ENABLED
+      override val isHermesEnabled: Boolean = BuildConfig.IS_HERMES_ENABLED
     }
 
   override val reactHost: ReactHost
