@@ -71,3 +71,4 @@ docs/api-reference/
 
 # Local stripe-android dependency
 example/android/stripe-android
+.yarn
