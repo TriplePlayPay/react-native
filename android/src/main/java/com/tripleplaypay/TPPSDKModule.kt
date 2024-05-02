@@ -32,8 +32,8 @@ class TPPSDKModule(
   fun initialize(apiKey: String) {
     Log.d(TAG, "initialize: entered");
     val ii = arrayOf(0)
-    var function: Runnable? = null;
-    function = Runnable {
+    val function: Array<Runnable?> = arrayOf(null);
+    function[0] = Runnable {
       Log.d(TAG, "initialize: polling, round ${ii[0]}");
       var activity = reactApplicationContext.currentActivity
 
@@ -51,10 +51,10 @@ class TPPSDKModule(
       if (ii[0] == 10)
         throw RuntimeException("no current activity - should not happen")
       ii[0]++;
-      Handler(Looper.getMainLooper()).postDelayed({ function?.run() }, 250L)
+      Handler(Looper.getMainLooper()).postDelayed({ function[0]?.run() }, 250L)
     }
 
-    Handler(Looper.getMainLooper()).postDelayed({ function.run() }, 250L)
+    Handler(Looper.getMainLooper()).postDelayed({ function[0]?.run() }, 250L)
 
     /*
     val activityContext =
