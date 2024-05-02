@@ -1,6 +1,8 @@
 buildscript {
   // Buildscript is evaluated before everything else so we can't use getExtOrDefault
-  def kotlin_version = rootProject.ext.has('kotlinVersion') ? rootProject.ext.get('kotlinVersion') : project.properties['StripeSdk_kotlinVersion']
+  // def kotlin_version = rootProject.ext.has('kotlinVersion') ? rootProject.ext.get('kotlinVersion') : project.properties['StripeSdk_kotlinVersion']
+  // ext.kotlin_version = '1.9.0'  // This line indicates the Kotlin version
+  def kotlin_version = '1.8.0' //rootProject.ext.has('kotlinVersion') ? rootProject.ext.get('kotlinVersion') : project.properties['StripeSdk_kotlinVersion']
 
   repositories {
     google()
@@ -22,7 +24,7 @@ repositories.maven {
   url 'https://maven.pkg.github.com/TriplePlayPay/TPP-Android-MagTekSDK'
   credentials {
     username "ggaabe"
-    password "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"
+    password "${GITHUB_TOKEN}"
   }
 }
 def getExtOrDefault(name) {

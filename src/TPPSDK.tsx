@@ -94,3 +94,5 @@ export const TPPSDKModule = {
 };
 
 export type TPPSDKModuleType = typeof TPPSDKModule;
+
+console.log('Available native modules:', NativeModules);

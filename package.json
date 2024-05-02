@@ -41,7 +41,8 @@
   },
   "homepage": "https://github.com/tripleplaypay/react-native#readme",
   "dependencies": {
-    "@react-native-community/cli-platform-ios": "^13.6.5"
+    "@react-native-community/cli-platform-ios": "^13.6.5",
+    "react-native-gradle-plugin": "^0.71.19"
   },
   "devDependencies": {
     "@babel/plugin-transform-typescript": "^7.13.0",
