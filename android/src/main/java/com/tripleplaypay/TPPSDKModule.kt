@@ -1,10 +1,11 @@
 // TPPSDKModule.kt
 
-package com.tripleplaypay.magteksdk
+package com.tripleplaypay.reactnative
 
 import com.facebook.react.bridge.*
 import com.facebook.react.modules.core.DeviceEventManagerModule
-import com.magteksdk.MagTekCardReader
+
+//import com.tripleplaypay
 
 @ReactModule(name = TPPSDKModule.NAME)
 class TPPSDKModule(reactContext: ReactApplicationContext) : ReactContextBaseJavaModule(reactContext) {
@@ -12,9 +13,7 @@ class TPPSDKModule(reactContext: ReactApplicationContext) : ReactContextBaseJava
         private var reader: MagTekCardReader? = null
     }
 
-    companion object {
-        const val NAME = "TPPSDK"
-    }
+    public static final String NAME = "TPPSDK";
 
     override fun getName(): String {
         return NAME

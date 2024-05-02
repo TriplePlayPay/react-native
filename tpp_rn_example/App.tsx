@@ -71,7 +71,11 @@ function App(): React.JSX.Element {
 
   useEffect(() => {
     // console.log('TPP SDK MODULE 2:', TPPSDKModule);
-    TPPSDKModule.initialize('testapikey');
+    try {
+      TPPSDKModule.initialize('testapikey');
+    } catch (error) {
+      console.log('Error initializing TPP SDK:', error);
+    }
 
     setTimeout(() => {
       // console.log('TPP SDK MODULE 2:', TPPSDKModule);

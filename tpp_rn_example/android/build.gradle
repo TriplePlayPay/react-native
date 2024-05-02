@@ -1,29 +1,39 @@
 buildscript {
-  ext {
-    buildToolsVersion = "34.0.0"
-    minSdkVersion = 21
-    compileSdkVersion = 34
-    targetSdkVersion = 34
-    ndkVersion = "25.1.8937393"
-    kotlinVersion = "1.8.0"
-  }
-  repositories {
-    google()
-    mavenCentral()
-     maven {
-        // Define the local React Native Maven repository
-        url "$rootDir/../node_modules/react-native/android"
+    ext {
+        buildToolsVersion = "34.0.0"
+        minSdkVersion = 21
+        compileSdkVersion = 34
+        targetSdkVersion = 34
+        ndkVersion = "25.1.8937393"
+        kotlinVersion = "1.8.0"
     }
-  }
-  dependencies {
-    classpath("com.android.tools.build:gradle")
-    classpath("com.facebook.react:react-native-gradle-plugin")
-    classpath("org.jetbrains.kotlin:kotlin-gradle-plugin")
-//    implementation project(':tripleplaypay.reactnative')
-//    implementation project(':tripleplaypay')
+    repositories {
+        google()
+        mavenCentral()
+    }
 
-  }
+    dependencies {
+        classpath("com.android.tools.build:gradle")
+        classpath("com.facebook.react:react-native-gradle-plugin")
+        classpath("org.jetbrains.kotlin:kotlin-gradle-plugin")
+
+    }
 }
 
+
+//
+//android {
+//dependencies {
+//    implementation 'com.tripleplaypay.magteksdk:sdk-debug:0.1.1:aar'
+//    implementation 'com.tripleplaypay.magteksdk.magtek:mt-scra:99510109.1'
+//}
+//repositories.maven {
+//  url 'https://maven.pkg.github.com/TriplePlayPay/TPP-Android-MagTekSDK'
+//  credentials {
+//    username "ggaabe"
+//    password "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"
+//  }
+//}
+//}
+
 apply plugin: "com.facebook.react.rootproject"
-apply plugin: 'com.facebook.react'
