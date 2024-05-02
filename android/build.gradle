@@ -22,7 +22,7 @@ repositories.maven {
   url 'https://maven.pkg.github.com/TriplePlayPay/TPP-Android-MagTekSDK'
   credentials {
     username "ggaabe"
-    password "your_token_here"
+    password "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"
   }
 }
 def getExtOrDefault(name) {
@@ -33,7 +33,25 @@ def getExtOrIntegerDefault(name) {
   return 21// rootProject.ext.has(name) ? rootProject.ext.get(name) : (project.properties['StripeSdk_' + name]).toInteger()
 }
 
+def supportsNamespace() {
+  def parsed = com.android.Version.ANDROID_GRADLE_PLUGIN_VERSION.tokenize('.')
+  def major = parsed[0].toInteger()
+  def minor = parsed[1].toInteger()
+
+  // Namespace support was added in 7.3.0
+  return (major == 7 && minor >= 3) || major >= 8
+}
+
 android {
+  if (supportsNamespace()) {
+    namespace "com.tripleplaypay.reactnative"
+
+    sourceSets {
+      main {
+        manifest.srcFile "src/main/AndroidManifestDeprecated.xml"
+      }
+    }
+  }
   // compileSdkVersion getExtOrIntegerDefault('compileSdkVersion')
   compileSdkVersion 34
   defaultConfig {
@@ -45,6 +63,8 @@ android {
     testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     consumerProguardFiles 'proguard-rules.txt'
   }
+
+
 
   buildTypes {
     release {

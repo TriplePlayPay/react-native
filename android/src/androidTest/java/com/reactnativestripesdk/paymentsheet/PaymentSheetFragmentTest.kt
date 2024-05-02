@@ -1,8 +1,8 @@
-package com.reactnativestripesdk.paymentsheet
+package com.tripleplaypay.reactnative.paymentsheet
 
 import android.os.Bundle
 import androidx.core.os.bundleOf
-import com.reactnativestripesdk.PaymentSheetFragment
+import com.tripleplaypay.reactnative.PaymentSheetFragment
 import com.stripe.android.paymentsheet.PaymentSheet
 import org.junit.Assert
 import org.junit.Test

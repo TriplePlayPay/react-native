@@ -10,12 +10,20 @@ buildscript {
   repositories {
     google()
     mavenCentral()
+     maven {
+        // Define the local React Native Maven repository
+        url "$rootDir/../node_modules/react-native/android"
+    }
   }
   dependencies {
     classpath("com.android.tools.build:gradle")
     classpath("com.facebook.react:react-native-gradle-plugin")
     classpath("org.jetbrains.kotlin:kotlin-gradle-plugin")
+//    implementation project(':tripleplaypay.reactnative')
+//    implementation project(':tripleplaypay')
+
   }
 }
 
 apply plugin: "com.facebook.react.rootproject"
+apply plugin: 'com.facebook.react'

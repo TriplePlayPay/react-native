@@ -1,4 +1,4 @@
-package com.reactnativestripesdk.pushprovisioning
+package com.tripleplaypay.reactnative.pushprovisioning
 
 import android.content.Context
 import androidx.test.core.app.ApplicationProvider

@@ -1,11 +1,11 @@
-package com.reactnativestripesdk.mappers
+package com.tripleplaypay.reactnative.mappers
 
 import android.content.Context
 import androidx.test.core.app.ApplicationProvider
 import com.facebook.react.bridge.ReactApplicationContext
 import com.facebook.react.bridge.WritableNativeMap
 import com.facebook.soloader.SoLoader
-import com.reactnativestripesdk.utils.createCanAddCardResult
+import com.tripleplaypay.reactnative.utils.createCanAddCardResult
 import org.junit.Assert
 import org.junit.Before
 import org.junit.Test
