@@ -57,8 +57,8 @@ android {
   // compileSdkVersion getExtOrIntegerDefault('compileSdkVersion')
   compileSdkVersion 34
   defaultConfig {
-    minSdkVersion 21
-    targetSdkVersion getExtOrIntegerDefault('targetSdkVersion')
+    minSdkVersion 24
+    targetSdkVersion 24 //getExtOrIntegerDefault('targetSdkVersion')
     versionCode 1
     versionName "1.0"
     vectorDrawables.useSupportLibrary = true
@@ -168,7 +168,7 @@ dependencies {
   implementation "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
   implementation "androidx.lifecycle:lifecycle-runtime-ktx:2.3.1"
   implementation 'com.tripleplaypay.magteksdk:sdk-debug:0.1.1'
-  implementation 'com.tripleplaypay.magteksdk.magtek:mt-scra:99510109.1'
+  // implementation 'com.tripleplaypay.magteksdk.magtek:mt-scra:99510109.1'
   implementation("com.stripe:stripe-android:$stripe_version") {
     exclude group: 'androidx.emoji2', module: 'emoji2'
   }
