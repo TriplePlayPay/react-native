@@ -23,7 +23,7 @@ apply plugin: 'kotlin-android'
 repositories.maven {
   url 'https://maven.pkg.github.com/TriplePlayPay/TPP-Android-MagTekSDK'
   credentials {
-    username "ggaabe"
+    username "${GITHUB_USER}"
     password "${GITHUB_TOKEN}"
   }
 }
@@ -167,7 +167,7 @@ dependencies {
   implementation 'com.github.bumptech.glide:glide:4.12.0'
   implementation "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
   implementation "androidx.lifecycle:lifecycle-runtime-ktx:2.3.1"
-  implementation 'com.tripleplaypay.magteksdk:sdk-debug:0.1.1:aar'
+  implementation 'com.tripleplaypay.magteksdk:sdk-debug:0.1.1'
   implementation 'com.tripleplaypay.magteksdk.magtek:mt-scra:99510109.1'
   implementation("com.stripe:stripe-android:$stripe_version") {
     exclude group: 'androidx.emoji2', module: 'emoji2'

@@ -5,7 +5,7 @@ apply plugin: "com.facebook.react"
 repositories.maven {
     url 'https://maven.pkg.github.com/TriplePlayPay/TPP-Android-MagTekSDK'
     credentials {
-        username "ggaabe"
+        username "${GITHUB_USER}"
         password "${GITHUB_TOKEN}"
     }
 }

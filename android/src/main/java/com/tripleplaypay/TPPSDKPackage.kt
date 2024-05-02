@@ -11,7 +11,7 @@ class TPPSDKPackage : ReactPackage {
         return mutableListOf(TPPSDKModule(reactContext))
     }
 
-    override fun createViewManagers(reactContext: ReactApplicationContext): MutableList<ViewManager<*>> {
+    override fun createViewManagers(reactContext: ReactApplicationContext): MutableList<ViewManager<*, *>> {
         // If you have custom view managers, they would be added here.
         return mutableListOf()
     }

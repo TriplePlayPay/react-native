@@ -28,8 +28,8 @@ buildscript {
   repositories.maven {
     url 'https://maven.pkg.github.com/TriplePlayPay/TPP-Android-MagTekSDK'
     credentials {
-      username "ggaabe"
-      password "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"
+      username "${GITHUB_USER}"
+      password "${GITHUB_TOKEN}"
     }
   }
     dependencies {
