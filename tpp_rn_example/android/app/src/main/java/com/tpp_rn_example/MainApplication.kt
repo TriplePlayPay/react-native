@@ -1,12 +1,15 @@
 package com.tpp_rn_example
 
 import android.app.Application
+import android.util.Log
 import com.facebook.react.*
 import com.facebook.react.defaults.DefaultNewArchitectureEntryPoint.load
 import com.facebook.react.defaults.DefaultReactHost.getDefaultReactHost
 import com.facebook.react.defaults.DefaultReactNativeHost
 import com.facebook.soloader.SoLoader
 import com.tripleplaypay.TPPSDKPackage
+
+private const val TAG = "MainApplication"
 
 class MainApplication : Application(), ReactApplication {
 
@@ -16,7 +19,10 @@ class MainApplication : Application(), ReactApplication {
         PackageList(this).packages.apply {
           // Packages that cannot be autolinked yet can be added manually here, for example:
           // add(MyReactNativePackage())
-          add(TPPSDKPackage({ activity }))
+          add(TPPSDKPackage {
+            Log.d(TAG, "getPackages: fetching activity from lambda")
+            activity
+          })
         }
 
       override fun getJSMainModuleName(): String = "index"

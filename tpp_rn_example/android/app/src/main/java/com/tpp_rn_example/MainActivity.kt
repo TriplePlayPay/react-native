@@ -2,10 +2,13 @@ package com.tpp_rn_example
 
 import android.os.Bundle
 import android.os.PersistableBundle
+import android.util.Log
 import com.facebook.react.ReactActivity
 import com.facebook.react.ReactActivityDelegate
 import com.facebook.react.defaults.DefaultNewArchitectureEntryPoint.fabricEnabled
 import com.facebook.react.defaults.DefaultReactActivityDelegate
+
+private const val TAG = "MainActivity"
 
 class MainActivity : ReactActivity() {
 
@@ -14,6 +17,7 @@ class MainActivity : ReactActivity() {
     persistentState: PersistableBundle?
   ) {
     super.onCreate(savedInstanceState, persistentState)
+    Log.d(TAG, "onCreate: saving the activity")
     MainApplication.activity = this;
   }
 
