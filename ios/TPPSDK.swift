@@ -17,7 +17,7 @@ class TPPSDK:  RCTEventEmitter {
   }
 
   override func supportedEvents() -> [String]! {
-    return []
+    return ["TransactionUpdate"]
   }
 
   @objc func startDeviceDiscovery(_ callback: @escaping RCTResponseSenderBlock) {
@@ -41,20 +41,14 @@ class TPPSDK:  RCTEventEmitter {
     TPPSDK.reader?.disconnect()
   }
 
-  @objc func startTransaction(_ amount: String, callback: @escaping RCTResponseSenderBlock) {
-    if (transactionCallbackCalled) {
-      print("startTransaction was called again!")
-      print("amount: \(amount)")
-      print("callback: \(callback)")
-    } else {
-      transactionCallbackCalled = true;
-      TPPSDK.reader?.startTransaction(amount) { [weak self] message, event, status in
-        callback([[
-          "message": message,
-          "event": MagTekCardReader.getEventMessage(event),
-          "status": MagTekCardReader.getStatusMessage(status)
-        ]])
-      }
+  @objc func startTransaction(_ amount: String) {
+    TPPSDK.reader?.startTransaction(amount) { [weak self] message, event, status in
+      let transactionInfo = [
+        "message": message,
+        "event": MagTekCardReader.getEventMessage(event),
+        "status": MagTekCardReader.getStatusMessage(status)
+      ]
+      self?.sendEvent(withName: "TransactionUpdate", body: transactionInfo)
     }
   }
 
