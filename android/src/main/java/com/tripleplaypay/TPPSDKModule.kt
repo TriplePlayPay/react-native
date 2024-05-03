@@ -7,10 +7,16 @@ import android.app.Activity
 import android.os.Handler
 import android.os.Looper
 import android.util.Log
-import com.facebook.react.bridge.*
+import com.facebook.react.bridge.Arguments
+import com.facebook.react.bridge.Callback
+import com.facebook.react.bridge.ReactApplicationContext
+import com.facebook.react.bridge.ReactContextBaseJavaModule
+import com.facebook.react.bridge.ReactMethod
 import com.facebook.react.module.annotations.ReactModule
 import com.tripleplaypay.magteksdk.MagTekCardReader
 import java.util.function.Supplier
+import com.facebook.react.modules.core.DeviceEventManagerModule.RCTDeviceEventEmitter
+
 
 private const val TAG = "TPPSDKModule"
 
@@ -91,8 +97,17 @@ class TPPSDKModule(
 
   @ReactMethod
   fun connect(deviceName: String, timeout: Double, callback: Callback) {
-    reader?.connect(deviceName, timeout.toFloat()) { connected ->
-      callback.invoke(connected)
+    if(reader == null){
+      callback.invoke(false)
+      return
+    }else{
+      Log.d(TAG, "connect: attempting to connect")
+      reader!!.connect(deviceName, timeout.toFloat()) { connected ->
+        Log.d(TAG, "connect: response received $connected")
+        Handler(Looper.getMainLooper()).post {
+           callback.invoke(connected)
+        }
+      }
     }
   }
 
@@ -103,24 +118,31 @@ class TPPSDKModule(
 
   @ReactMethod
   fun startTransaction(amount: String, callback: Callback) {
-    // reader?.startTransaction(amount) { message, event, status ->
-    //     val transactionResult = Arguments.createMap().apply {
-    //         putString("message", message)
-    //         putString("event", MagTekCardReader.getEventMessage(event))
-    //         putString("status", MagTekCardReader.getStatusMessage(status))
-    //     }
-    //     callback.invoke(transactionResult)
-    // }
+    reader?.startTransaction(amount) { message, event, status ->
+        Log.d(TAG, "Transaction - Message: $message, Event: $event, Status: $status")
+        val transactionResult = Arguments.createMap().apply {
+            putString("message", message)
+            if (event != null && status != null) {
+                putString("event", event.toString())
+                putString("status", status.toString())
+            }
+        }
+        try {
+            callback.invoke(transactionResult)
+        } catch (e: Exception) {
+            Log.e(TAG, "Error invoking transaction result callback", e)
+        }
+    }
   }
 
   @ReactMethod
   fun getSerialNumber(callback: Callback) {
-    // val serialNumber = reader?.getSerialNumber() ?: ""
-    // callback.invoke(serialNumber)
+    val serialNumber = reader?.getSerialNumber() ?: ""
+    callback.invoke(serialNumber)
   }
 
   @ReactMethod
   fun cancelTransaction() {
-    // reader?.cancelTransaction()
+    reader?.cancelTransaction()
   }
 }

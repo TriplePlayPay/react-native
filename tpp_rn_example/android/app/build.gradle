@@ -91,7 +91,7 @@ android {
         versionName "1.0"
         buildConfigField "Boolean", "IS_INTERNAL_BUILD", 'true'
         buildConfigField "Boolean", "IS_HERMES_ENABLED", 'true'
-        buildConfigField "Boolean", "IS_NEW_ARCHITECTURE_ENABLED", 'true'
+        buildConfigField "Boolean", "IS_NEW_ARCHITECTURE_ENABLED", 'false'
     }
     signingConfigs {
         debug {
