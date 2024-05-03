@@ -1,8 +1,10 @@
 // MagTekModule.tsx
 
-import { NativeModules } from 'react-native';
+import { useEffect, useState } from 'react';
+import { NativeEventEmitter, NativeModules } from 'react-native';
 
 const { TPPSDK } = NativeModules;
+const tppSDKModuleEmitter = new NativeEventEmitter(TPPSDK);
 
 type DeviceInfo = {
   name: string;
@@ -90,6 +92,33 @@ export const TPPSDKModule = {
 
   cancelTransaction(): void {
     TPPSDK.cancelTransaction();
+  },
+
+  useTransactionUpdates: () => {
+    const [transactionResult, setTransactionResult] =
+      useState<TransactionResult | null>(null);
+
+    useEffect(() => {
+      const subscription = tppSDKModuleEmitter.addListener(
+        'TransactionUpdate',
+        (result: TransactionResult) => {
+          console.log('Transaction Update:', result);
+          setTransactionResult(result);
+        }
+      );
+
+      return () => {
+        subscription.remove();
+      };
+    }, []);
+
+    const startTransaction = (amount: string) => {
+      TPPSDKModule.startTransaction(amount, (result: TransactionResult) => {
+        setTransactionResult(result); // Optionally update state here as well if needed immediately after transaction
+      });
+    };
+
+    return { transactionResult, startTransaction };
   },
 };
 
