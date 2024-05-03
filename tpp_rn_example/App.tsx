@@ -66,8 +66,10 @@ function App(): React.JSX.Element {
 
   const [deviceInfo, setDeviceInfo] = useState<any>(null);
   const [connected, setConnected] = useState(false);
-  const [transactionResult, setTransactionResult] = useState<any>(null);
+  // const [transactionResult, setTransactionResult] = useState<any>(null);
   const [serialNumber, setSerialNumber] = useState('');
+  const {transactionResult, startTransaction} =
+    TPPSDKModule.useTransactionUpdates();
 
   useEffect(() => {
     // console.log('TPP SDK MODULE 2:', TPPSDKModule);
@@ -96,8 +98,10 @@ function App(): React.JSX.Element {
   };
 
   const handleConnect = () => {
+    console.log('AAAAAAHHHHHHHHHH');
     if (deviceInfo) {
-      TPPSDKModule.connect(deviceInfo.name, 10000, result => {
+      TPPSDKModule.connect(deviceInfo.name, 5, result => {
+        console.log('WE ARE FUCKING CONNECTED MAYBE', result);
         setConnected(result);
       });
     }
@@ -109,9 +113,7 @@ function App(): React.JSX.Element {
   };
 
   const handleStartTransaction = () => {
-    TPPSDKModule.startTransaction('10.00', result => {
-      setTransactionResult(result);
-    });
+    startTransaction('10.00');
   };
 
   const handleGetSerialNumber = () => {
@@ -122,7 +124,7 @@ function App(): React.JSX.Element {
 
   const handleCancelTransaction = () => {
     TPPSDKModule.cancelTransaction();
-    setTransactionResult(null);
+    // setTransactionResult(null);
   };
 
   // const styles = StyleSheet.create({
@@ -163,6 +165,9 @@ function App(): React.JSX.Element {
           onPress={TPPSDKModule.cancelDeviceDiscovery}
         />
         <Button title="Start Searching" onPress={handleStartSearching} />
+        <Text style={{color: 'red'}}>
+          Transaction Result: {JSON.stringify(transactionResult)}
+        </Text>
       </>
     </SafeAreaView>
   );
@@ -171,6 +176,7 @@ const styles = StyleSheet.create({
   sectionContainer: {
     marginTop: 32,
     paddingHorizontal: 24,
+    color: 'red',
   },
   sectionTitle: {
     fontSize: 24,
