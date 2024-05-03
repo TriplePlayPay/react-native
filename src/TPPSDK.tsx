@@ -67,15 +67,10 @@ export const TPPSDKModule = {
   /**
    * Starts a transaction with a MagTek device
    * @param amount The amount to charge
-   * @param callback The callback to call when the transaction is complete
+
    */
-  startTransaction(
-    amount: string,
-    callback: (result: TransactionResult) => void
-  ): void {
-    TPPSDK.startTransaction(amount, (result: TransactionResult) => {
-      callback(result);
-    });
+  startTransaction(amount: string): void {
+    TPPSDK.startTransaction(amount);
   },
 
   /**
@@ -113,9 +108,7 @@ export const TPPSDKModule = {
     }, []);
 
     const startTransaction = (amount: string) => {
-      TPPSDKModule.startTransaction(amount, (result: TransactionResult) => {
-        setTransactionResult(result); // Optionally update state here as well if needed immediately after transaction
-      });
+      TPPSDKModule.startTransaction(amount);
     };
 
     return { transactionResult, startTransaction };

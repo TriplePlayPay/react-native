@@ -12,11 +12,11 @@ import com.facebook.react.bridge.Callback
 import com.facebook.react.bridge.ReactApplicationContext
 import com.facebook.react.bridge.ReactContextBaseJavaModule
 import com.facebook.react.bridge.ReactMethod
+import com.facebook.react.bridge.WritableMap
 import com.facebook.react.module.annotations.ReactModule
+import com.facebook.react.modules.core.DeviceEventManagerModule.RCTDeviceEventEmitter
 import com.tripleplaypay.magteksdk.MagTekCardReader
 import java.util.function.Supplier
-import com.facebook.react.modules.core.DeviceEventManagerModule.RCTDeviceEventEmitter
-
 
 private const val TAG = "TPPSDKModule"
 
@@ -36,6 +36,22 @@ class TPPSDKModule(
     return NAME
   }
 
+    private val eventEmitter: RCTDeviceEventEmitter
+    get() = reactApplicationContext.getJSModule(RCTDeviceEventEmitter::class.java)
+
+    fun emitEvent(eventName: String, params: WritableMap?) {
+        eventEmitter.emit(eventName, params)
+    }
+
+    @ReactMethod
+    fun addListener(type: String?) {
+        // Keep: Required for RN built in Event Emitter Calls.
+    }
+
+    @ReactMethod
+    fun removeListeners(type: Int?) {
+        // Keep: Required for RN built in Event Emitter Calls.
+    }
   @ReactMethod
   fun initialize(apiKey: String) {
     Log.d(TAG, "initialize: entered");
@@ -116,24 +132,24 @@ class TPPSDKModule(
     reader?.disconnect()
   }
 
-  @ReactMethod
-  fun startTransaction(amount: String, callback: Callback) {
+@ReactMethod
+fun startTransaction(amount: String) {
     reader?.startTransaction(amount) { message, event, status ->
         Log.d(TAG, "Transaction - Message: $message, Event: $event, Status: $status")
         val transactionResult = Arguments.createMap().apply {
             putString("message", message)
-            if (event != null && status != null) {
-                putString("event", event.toString())
-                putString("status", status.toString())
-            }
+            event?.let { putString("event", it.toString()) }
+            status?.let { putString("status", it.toString()) }
         }
         try {
-            callback.invoke(transactionResult)
+            reactApplicationContext
+                .getJSModule(RCTDeviceEventEmitter::class.java)
+                .emit("TransactionUpdate", transactionResult)
         } catch (e: Exception) {
-            Log.e(TAG, "Error invoking transaction result callback", e)
+            Log.e(TAG, "Error emitting transaction result", e)
         }
     }
-  }
+}
 
   @ReactMethod
   fun getSerialNumber(callback: Callback) {
