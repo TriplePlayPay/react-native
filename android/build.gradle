@@ -167,7 +167,7 @@ dependencies {
   implementation 'com.github.bumptech.glide:glide:4.12.0'
   implementation "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
   implementation "androidx.lifecycle:lifecycle-runtime-ktx:2.3.1"
-  implementation 'com.tripleplaypay.magteksdk:sdk-debug:0.3.0-rc.1'
+  implementation 'com.tripleplaypay.magteksdk:sdk-debug:0.4.1-rc.1'
   // implementation 'com.tripleplaypay.magteksdk.magtek:mt-scra:99510109.1'
   implementation("com.stripe:stripe-android:$stripe_version") {
     exclude group: 'androidx.emoji2', module: 'emoji2'
