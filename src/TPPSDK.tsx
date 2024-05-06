@@ -64,14 +64,14 @@ export const TPPSDKModule = {
     TPPSDK.disconnect();
   },
 
-  /**
-   * Starts a transaction with a MagTek device
-   * @param amount The amount to charge
+  // /**
+  //  * Starts a transaction with a MagTek device
+  //  * @param amount The amount to charge
 
-   */
-  startTransaction(amount: string): void {
-    TPPSDK.startTransaction(amount);
-  },
+  //  */
+  // startTransaction(amount: string): void {
+  //   TPPSDK.startTransaction(amount);
+  // },
 
   /**
    * Retrieves the serial number of the connected MagTek device
@@ -85,10 +85,23 @@ export const TPPSDKModule = {
     });
   },
 
+  /**
+   * Cancels the transaction the device is waiting to start.
+   * This will not cancel a transaction that has submitted its network
+   * request.
+   */
   cancelTransaction(): void {
     TPPSDK.cancelTransaction();
   },
 
+  /**
+   * Custom hook to manage transaction updates and state.
+   * This hook provides:
+   * - `transactionResult`: Holds a statefully updated result of a transaction as it
+   * progresses through each phase, including message, event type, and status.
+   * - `startTransaction`: Function to initiate a transaction with a specified amount.
+   * @returns An object containing the transaction result state and a method to start a transaction.
+   */
   useTransactionUpdates: () => {
     const [transactionResult, setTransactionResult] =
       useState<TransactionResult | null>(null);
@@ -97,7 +110,7 @@ export const TPPSDKModule = {
       const subscription = tppSDKModuleEmitter.addListener(
         'TransactionUpdate',
         (result: TransactionResult) => {
-          console.log('Transaction Update:', result);
+          // console.log('Transaction Update:', result);
           setTransactionResult(result);
         }
       );
@@ -107,8 +120,12 @@ export const TPPSDKModule = {
       };
     }, []);
 
+    /**
+     * Initiates a transaction with the specified amount.
+     * @param amount The monetary amount for the transaction.
+     */
     const startTransaction = (amount: string) => {
-      TPPSDKModule.startTransaction(amount);
+      TPPSDK.startTransaction(amount);
     };
 
     return { transactionResult, startTransaction };
@@ -116,5 +133,3 @@ export const TPPSDKModule = {
 };
 
 export type TPPSDKModuleType = typeof TPPSDKModule;
-
-console.log('Available native modules:', NativeModules);
