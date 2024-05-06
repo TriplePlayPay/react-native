@@ -98,10 +98,10 @@ function App(): React.JSX.Element {
   };
 
   const handleConnect = () => {
-    console.log('AAAAAAHHHHHHHHHH');
+    console.log('Attempting to Connect');
     if (deviceInfo) {
-      TPPSDKModule.connect(deviceInfo.name, 5, result => {
-        console.log('WE ARE FUCKING CONNECTED MAYBE', result);
+      TPPSDKModule.connect(deviceInfo.name, 5000, result => {
+        console.log('RN Connect callback fired', result);
         setConnected(result);
       });
     }
