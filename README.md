@@ -27,13 +27,51 @@ open ./ios/MyProject.xcworkspace
 ```bash
 npx react-native start
 ```
-6. Import the `@tripleplaypay/react-native` module in your project:
+
+### Android
+
+If our Android MagTek SDK doesn't resolve, you may need to add our repo to the `allprojects` section of your android app's gradle file, like so:
+
+```
+allprojects {
+    repositories {
+        google()
+        mavenCentral()
+        maven {
+            url = uri('https://maven.pkg.github.com/TriplePlayPay/TPP-Android-MagTekSDK')
+            credentials {
+                username "${GITHUB_USER}"
+                password "${GITHUB_TOKEN}"
+            }
+        }
+    }
+}
+```
+
+### Usage:
+
+1. Import the `@tripleplaypay/react-native` module in your project:
 ```jsx
 import {TPPSDKModule} from '@tripleplaypay/react-native';
 ```
-7. Prior to any usage, initialize the SDK with your publishable key:
+
+2. Prior to any usage, initialize the SDK with your publishable key:
 ```jsx
 TPPSDKModule.initialize('test-key-example');
 ```
-### Android
-coming soon...
+
+3. To initiate a transaction, use the `useTransactionUpdates` hook to get the `startTransaction` method and a stateful `transactionResult` object that updates during each phase of the transaction processing. 
+   
+   Use the hook inside of a react component so that transactionResult changes will trigger re-render effects:
+
+```tsx
+const {transactionResult, startTransaction} = TPPSDKModule.useTransactionUpdates();
+
+// Start the transaction
+startTransaction('10.00');
+
+// transactionResult will begin statefully updating with messages such as:
+// "PRESENT_CARD", cancellations, successes, and other status data
+
+
+```
