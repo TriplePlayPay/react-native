@@ -46,7 +46,7 @@ $version_and_date
 
 $changelog
 
-Please [see the changelog](https://github.com/stripe/stripe-react-native/blob/master/CHANGELOG.md) for additional details.
+Please see the changelogfor additional details.
 
 EOF
 )"
