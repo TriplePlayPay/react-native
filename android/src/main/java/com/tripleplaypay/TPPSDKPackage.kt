@@ -1,11 +1,9 @@
-package com.tripleplaypay
+package com.tripleplaypay.reactnative
 
-import android.app.Activity
 import com.facebook.react.ReactPackage
 import com.facebook.react.bridge.NativeModule
 import com.facebook.react.bridge.ReactApplicationContext
 import com.facebook.react.uimanager.ViewManager
-
 
 
 class TPPSDKPackage() : ReactPackage {

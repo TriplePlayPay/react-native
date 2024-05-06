@@ -1,6 +1,6 @@
 // TPPSDKModule.kt
 
-package com.tripleplaypay
+package com.tripleplaypay.reactnative
 
 import android.annotation.SuppressLint
 import android.app.Activity
