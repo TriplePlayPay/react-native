@@ -1,8 +1,5 @@
 package com.tpp_rn_example
 
-import android.os.Bundle
-import android.os.PersistableBundle
-import android.util.Log
 import com.facebook.react.ReactActivity
 import com.facebook.react.ReactActivityDelegate
 import com.facebook.react.defaults.DefaultNewArchitectureEntryPoint.fabricEnabled
@@ -12,14 +9,14 @@ private const val TAG = "MainActivity"
 
 class MainActivity : ReactActivity() {
 
-  override fun onCreate(
-    savedInstanceState: Bundle?,
-    persistentState: PersistableBundle?
-  ) {
-    super.onCreate(savedInstanceState, persistentState)
-    Log.d(TAG, "onCreate: saving the activity")
-    MainApplication.activity[0] = this;
-  }
+  // override fun onCreate(
+  //   savedInstanceState: Bundle?,
+  //   persistentState: PersistableBundle?
+  // ) {
+  //   super.onCreate(savedInstanceState, persistentState)
+  //   Log.d(TAG, "onCreate: saving the activity")
+  //   // MainApplication.activity[0] = this;
+  // }
 
   /**
    * Returns the name of the main component registered from JavaScript. This is used to schedule

@@ -5,13 +5,13 @@ import com.facebook.react.ReactPackage
 import com.facebook.react.bridge.NativeModule
 import com.facebook.react.bridge.ReactApplicationContext
 import com.facebook.react.uimanager.ViewManager
-import java.util.function.Supplier
 
 
-class TPPSDKPackage(private val activityGetter: Supplier<Activity?>) : ReactPackage {
+
+class TPPSDKPackage() : ReactPackage {
 
   override fun createNativeModules(reactContext: ReactApplicationContext): MutableList<NativeModule> {
-    return mutableListOf(TPPSDKModule(reactContext, activityGetter))
+    return mutableListOf(TPPSDKModule(reactContext))
   }
 
   override fun createViewManagers(reactContext: ReactApplicationContext): MutableList<ViewManager<*, *>> {
