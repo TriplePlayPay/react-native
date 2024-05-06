@@ -14,7 +14,7 @@
 // Replace "methodName" with your actual method names
 RCT_EXTERN_METHOD(startDeviceDiscovery:(RCTResponseSenderBlock)callback)
 RCT_EXTERN_METHOD(cancelDeviceDiscovery)
-RCT_EXTERN_METHOD(connect:(NSString *)deviceName timeout:(nonnull NSNumber *)timeout callback:(RCTResponseSenderBlock)callback)
+RCT_EXTERN_METHOD(connect:(NSString *)deviceName timeoutSeconds:(nonnull NSNumber *)timeoutSeconds callback:(RCTResponseSenderBlock)callback)
 RCT_EXTERN_METHOD(disconnect)
 RCT_EXTERN_METHOD(startTransaction:(NSString *)amount)
 RCT_EXTERN_METHOD(getSerialNumber:(RCTResponseSenderBlock)callback)

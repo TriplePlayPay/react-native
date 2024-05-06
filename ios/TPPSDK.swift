@@ -30,8 +30,8 @@ class TPPSDK:  RCTEventEmitter {
     TPPSDK.reader?.cancelDeviceDiscovery()
   }
 
-  @objc func connect(_ deviceName: String, timeout: TimeInterval, callback: @escaping RCTResponseSenderBlock) {
-    TPPSDK.reader?.connect(deviceName, timeout: timeout) { connected in
+  @objc func connect(_ deviceName: String, timeoutSeconds: UInt32, callback: @escaping RCTResponseSenderBlock) {
+    TPPSDK.reader?.connect(deviceName, timeoutSeconds) { connected in
       print("connected: \(connected)")
       callback([connected])
     }
