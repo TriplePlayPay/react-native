@@ -97,7 +97,7 @@ class TPPSDKModule(
 
   @ReactMethod
   fun startDeviceDiscovery(callback: Callback) {
-    reader?.startDeviceDiscovery(30_000L) { name, rssi ->
+    reader?.startDeviceDiscovery() { name, rssi ->
       val deviceInfo = Arguments.createMap().apply {
         putString("name", name)
         putInt("rssi", rssi)
@@ -112,13 +112,13 @@ class TPPSDKModule(
   }
 
   @ReactMethod
-  fun connect(deviceName: String, timeout: Double, callback: Callback) {
+  fun connect(deviceName: String, timeout: Number, callback: Callback) {
     if(reader == null){
       callback.invoke(false)
       return
     }else{
       Log.d(TAG, "connect: attempting to connect")
-      reader!!.connect(deviceName, timeout.toFloat()) { connected ->
+      reader!!.connect(deviceName, timeout.toInt()) { connected ->
         Log.d(TAG, "connect: response received $connected")
         Handler(Looper.getMainLooper()).post {
            callback.invoke(connected)
