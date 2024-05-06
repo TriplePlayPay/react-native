@@ -52,9 +52,12 @@ export const TPPSDKModule = {
    */
   connect(
     deviceName: string,
-    timeout: number,
+    timeout = 10,
     callback: (connected: boolean) => void
   ): void {
+    if (timeout <= 0) {
+      timeout = 10;
+    }
     TPPSDK.connect(deviceName, timeout, (result: boolean) => {
       callback(result);
     });
