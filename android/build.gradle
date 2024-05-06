@@ -1,8 +1,8 @@
 buildscript {
   // Buildscript is evaluated before everything else so we can't use getExtOrDefault
-  // def kotlin_version = rootProject.ext.has('kotlinVersion') ? rootProject.ext.get('kotlinVersion') : project.properties['StripeSdk_kotlinVersion']
+  // def kotlin_version = rootProject.ext.has('kotlinVersion') ? rootProject.ext.get('kotlinVersion') : project.properties['TPPSdk_kotlinVersion']
   // ext.kotlin_version = '1.9.0'  // This line indicates the Kotlin version
-  def kotlin_version = '1.8.0' //rootProject.ext.has('kotlinVersion') ? rootProject.ext.get('kotlinVersion') : project.properties['StripeSdk_kotlinVersion']
+  def kotlin_version = '1.8.0' //rootProject.ext.has('kotlinVersion') ? rootProject.ext.get('kotlinVersion') : project.properties['TPPSdk_kotlinVersion']
 
   repositories {
     google()
@@ -28,11 +28,11 @@ repositories.maven {
   }
 }
 def getExtOrDefault(name) {
-  return rootProject.ext.has(name) ? rootProject.ext.get(name) : project.properties['StripeSdk_' + name]
+  return rootProject.ext.has(name) ? rootProject.ext.get(name) : project.properties['TPPSdk_' + name]
 }
 
 def getExtOrIntegerDefault(name) {
-  return 21// rootProject.ext.has(name) ? rootProject.ext.get(name) : (project.properties['StripeSdk_' + name]).toInteger()
+  return 21// rootProject.ext.has(name) ? rootProject.ext.get(name) : (project.properties['TPPSdk_' + name]).toInteger()
 }
 
 def supportsNamespace() {
