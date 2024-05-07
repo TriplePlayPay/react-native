@@ -7,7 +7,7 @@ npm install @tripleplaypay/react-native
 ```
 
 ### Setup
-For assistance setting up the hardware, visit [this document](./docs/magtek-setup.md).
+For assistance setting up the hardware, visit [this](./docs/magtek-setup.md) document.
 
 ### iOS
 To get started with the TPP React Native SDK on iOS, follow these steps:
