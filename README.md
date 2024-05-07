@@ -70,8 +70,6 @@ const {transactionResult, startTransaction} = TPPSDKModule.useTransactionUpdates
 // Start the transaction
 startTransaction('10.00');
 
-// transactionResult will begin statefully updating with messages such as:
-// "PRESENT_CARD", cancellations, successes, and other status data
-
-
 ```
+The `message` property on `transactionResult` will begin statefully updating with messages such as:
+"PRESENT CARD" when it is ready for the user to pay, "APPROVED" if the transaction submitted to TPP servers successfully, or "DECLINED" for other failures.
