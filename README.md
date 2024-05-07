@@ -5,6 +5,10 @@ Install the SDK
 ```bash
 npm install @tripleplaypay/react-native
 ```
+
+### Setup
+For assistance setting up the hardware, visit [this document](./docs/magtek-setup.md).
+
 ### iOS
 To get started with the TPP React Native SDK on iOS, follow these steps:
 1. Install the TPP React Native SDK and link the pods:
@@ -60,8 +64,8 @@ import {TPPSDKModule} from '@tripleplaypay/react-native';
 TPPSDKModule.initialize('test-key-example');
 ```
 
-3. To initiate a transaction, use the `useTransactionUpdates` hook to get the `startTransaction` method and a stateful `transactionResult` object that updates during each phase of the transaction processing. 
-   
+3. To initiate a transaction, use the `useTransactionUpdates` hook to get the `startTransaction` method and a stateful `transactionResult` object that updates during each phase of the transaction processing.
+
    Use the hook inside of a react component so that transactionResult changes will trigger re-render effects:
 
 ```tsx
