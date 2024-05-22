@@ -61,7 +61,11 @@ import {TPPSDKModule} from '@tripleplaypay/react-native';
 
 2. Prior to any usage, initialize the SDK with your publishable key:
 ```jsx
-TPPSDKModule.initialize('test-key-example');
+TPPSDKModule.initialize('prod-key-example');
+```
+or for testing sandbox transactions
+```jsx
+TPPSDKModule.initializeSandbox('sandbox-key-example');
 ```
 
 3. To initiate a transaction, use the `useTransactionUpdates` hook to get the `startTransaction` method and a stateful `transactionResult` object that updates during each phase of the transaction processing.
