@@ -9,7 +9,11 @@ class TPPSDK:  RCTEventEmitter {
   private var transactionCallbackCalled: Bool = false
 
   @objc func initialize(_ apiKey: String) {
-    TPPSDK.reader = MagTekCardReader(apiKey, debug: true)
+    TPPSDK.reader = MagTekCardReader(apiKey)
+  }
+
+  @objc func initializeSandbox(_ apiKey: String) {
+    TPPSDK.reader = MagTekCardReader(apiKey, debug: true, debugUrl: "https://sandbox.tripleplaypay.com")
   }
 
   @objc override static func requiresMainQueueSetup() -> Bool {

@@ -25,6 +25,13 @@ export const TPPSDKModule = {
   initialize(publishableKey: string): void {
     TPPSDK.initialize(publishableKey);
   },
+  /**
+   * Initialize the TPPSDK in sandbox mode. This must be called first
+   * @param publishableKey Your TPP Publishable Key
+   */
+  initializeSandbox(publishableKey: string): void {
+    TPPSDK.initializeSandbox(publishableKey);
+  },
 
   /**
    * Starts MagTek device discovery.

@@ -113,6 +113,14 @@ class TPPSDKModule(
     // reader = MagTekCardReader(reactApplicationContext.getApplicationContext(), apiKey/*, debug = true*/)
   }
 
+  @ReactMethod
+  fun initializeSandbox(apiKey: String) {
+    Log.d(TAG, "initializeSandbox: entered");
+    tppAPIKey = apiKey
+    val activity = reactApplicationContext.currentActivity
+    reader = MagTekCardReader(activity, apiKey, true, "https://sandbox.tripleplaypay.com")
+  }
+
   private fun readActivityFromReactNativeOrOurStaticVar(ii: Array<Int>): Activity? {
     Log.d(TAG, "initialize: polling, round ${ii[0]}");
     var activity = reactApplicationContext.currentActivity
