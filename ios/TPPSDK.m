@@ -20,6 +20,7 @@ RCT_EXTERN_METHOD(startTransaction:(NSString *)amount)
 RCT_EXTERN_METHOD(getSerialNumber:(RCTResponseSenderBlock)callback)
 RCT_EXTERN_METHOD(cancelTransaction)
 RCT_EXTERN_METHOD(initialize:(NSString *)apiKey)
+RCT_EXTERN_METHOD(initializeSandbox:(NSString *)apiKey)
 
 @end
 
